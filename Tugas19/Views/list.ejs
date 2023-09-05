@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD (Create, Read, Update, Delete)</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <script src="/js/setting.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>JSON CRUD (Create, Read, Update, Delete)</h1>
+        <a href="add" class="btn">Create</a>
+        <table>
+            <thead>
+                <tr>
+                    <th> No.</th>
+                    <th> Name</th>
+                    <th> Height</th>
+                    <th> Weight</th>
+                    <th> Birth Date </th>
+                    <th> Is Married </th>
+                    <th>actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% data.forEach((item, index) => { %>
+                    <% if (item.married) {%>
+                        <% married = "Yes" %>
+                        <tr>
+                            <td><%= index + 1 %></td>
+                            <td><%= item.name %></td>
+                            <td><%= item.height %></td>
+                            <td><%= item.weight %></td>
+                            <td><%= item.birthdate %></td>
+                            <td><%= married %></td>
+                            <td><a href="/edit/<%= index %>">Update</a> &nbsp; <a href="/delete/<%= index %>" onclick="return confirmation('<%= item.name %>')">Delete</a></td>
+                        </tr>
+                    <% } %>
+                    <% if (!item.married) {%>
+                        <% married = "Not Yet" %>
+                        <tr>
+                            <td><%= index + 1 %></td>
+                            <td><%= item.name %></td>
+                            <td><%= item.height %></td>
+                            <td><%= item.weight %></td>
+                            <td><%= item.birthdate %></td>
+                            <td><%= married %></td>
+                            <td><a href="/edit/<%= index %>">Update</a> &nbsp; <a href="/delete/<%= index %>" onclick="return confirmation('<%= item.name %>')">Delete</a></td>
+                        </tr>
+                    <% } %>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
+
+
